@@ -1,0 +1,32 @@
+comment=QOL mods by zami
+
+
+>> Legit
+// Access Cairo from Main Menu
+patch=1,EE,E0040001,extended,003E1110 //check MapID=Main Menu
+patch=1,EE,E0030000,extended,008E3D40 //ep selected
+patch=1,EE,E10200F0,extended,002DFC03 //check L1+R1+L2+R2
+patch=1,EE,E001E900,extended,007BE0A0 //ep started to load
+patch=1,EE,205975E0,extended,00000000 //set next map to cairo
+
+// Exit to Episode Menu from Cairo
+patch=1,EE,E0070000,extended,003E1110 //check MapID=Cairo
+patch=1,EE,E0060001,extended,003D9EF4 //check if paused
+patch=1,EE,203D9EF8,extended,00000005 //increase displayed options
+patch=1,EE,202F6650,extended,00000042 //fill empty spot in pause menu slot region
+patch=1,EE,202F6654,extended,001B06D8
+patch=1,EE,202F6658,extended,00000002
+patch=1,EE,202F665C,extended,002C0068
+patch=1,EE,202F666C,extended,00000002
+
+>> Cheats
+// Always assign megajump to L1
+patch=1,EE,602E1E40,extended,0000001F //gadget id 31
+patch=1,EE,00020000,extended,00001180
+
+// Cutscene skipper
+.patch=1,EE,E0040003,extended,003D3980 //when not loading
+.patch=1,EE,E003000C,extended,002E0CB4 //check L1+R1
+.patch=1,EE,603E1574,extended,00000001 //skip cs pointer
+.patch=1,EE,00000002,extended,00000030 //first offset
+.patch=1,EE,00000004,extended,00000000 //second offset
